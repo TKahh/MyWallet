@@ -26,7 +26,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     TextView moneyview;
-    Button buttonaddmoney;
+    Button buttonaddexpenses;
     int currentMoney = 0;
 
     @Override
@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         moneyview = findViewById(R.id.MoneyView);
-        buttonaddmoney = findViewById(R.id.buttonAddMoney);
+        buttonaddexpenses = findViewById(R.id.buttonAddExpenses);
 
         updateMoneyDisplay();
-        buttonaddmoney.setOnClickListener(new View.OnClickListener() {
+        buttonaddexpenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 OpenList();

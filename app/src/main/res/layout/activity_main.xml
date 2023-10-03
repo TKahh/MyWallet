@@ -18,7 +18,7 @@
         />
 
     <Button
-        android:id="@+id/buttonAddMoney"
+        android:id="@+id/buttonAddExpenses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add expenses"
