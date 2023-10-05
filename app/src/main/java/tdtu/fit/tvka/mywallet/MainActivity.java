@@ -26,7 +26,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     TextView moneyview;
-    Button buttonaddexpenses;
+    Button buttonadd, buttonaddFund;
     int currentMoney = 0;
 
     @Override
@@ -35,13 +35,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         moneyview = findViewById(R.id.MoneyView);
-        buttonaddexpenses = findViewById(R.id.buttonAddExpenses);
-
+        buttonadd = findViewById(R.id.buttonAddExpenses);
+        buttonaddFund = findViewById(R.id.buttonAddFunds);
         updateMoneyDisplay();
-        buttonaddexpenses.setOnClickListener(new View.OnClickListener() {
+        buttonadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 OpenList();
+            }
+        });
+
+        buttonaddFund.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenMoneyDialog();
             }
         });
 
@@ -49,6 +56,38 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateMoneyDisplay() {
         moneyview.setText(currentMoney + "đ" );
+    }
+
+
+    private void OpenMoneyDialog(){
+        AlertDialog.Builder fund = new AlertDialog.Builder(this);
+        fund.setTitle("Add fund");
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        fund.setView(input);
+
+        fund.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String moneyString = input.getText().toString();
+                if (!moneyString.isEmpty()) {
+                    int FundAdd = Integer.parseInt(moneyString);
+                    currentMoney += FundAdd;
+                    updateMoneyDisplay();
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Please enter a valid amount", Toast.LENGTH_SHORT ).show();
+                }
+            }
+        });
+
+        fund.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        fund.show();
     }
 
     private void OpenList(){

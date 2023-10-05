@@ -46,7 +46,7 @@ public class Expenses_List extends AppCompatActivity {
 
 
     private void showAddMoneyDialog() {
-        Intent intent_money = new Intent(Expenses_List.this,MainActivity.class);
+        Intent intent_expense = new Intent(Expenses_List.this,MainActivity.class);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Add money");
         final EditText input = new EditText(this);
@@ -58,10 +58,10 @@ public class Expenses_List extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 String moneyString = input.getText().toString();
                 if (!moneyString.isEmpty()) {
-                    int MoneyAdd = Integer.parseInt(moneyString);
-                    currentMoney += MoneyAdd;
-                    intent_money.putExtra("Money",MoneyAdd);
-                    setResult(RESULT_OK,intent_money);
+                    int ExpenseAdd = Integer.parseInt(moneyString);
+                    currentMoney -= ExpenseAdd;
+                    intent_expense.putExtra("Money",currentMoney);
+                    setResult(RESULT_OK,intent_expense);
                     finish();
                 } else {
                     Toast.makeText(Expenses_List.this, "Please enter a valid amount", Toast.LENGTH_SHORT).show();
