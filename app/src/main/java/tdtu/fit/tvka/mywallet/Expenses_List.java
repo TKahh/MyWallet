@@ -21,7 +21,7 @@ import java.util.List;
 
 public class Expenses_List extends AppCompatActivity {
 
-    String[] expenses = new String[]{"Food and Drink", "Commune", "Rent", "Water Bill", "Electric Bill"};
+    String[] expenses = new String[]{"Food and Drink", "Commute", "Rent", "Water Bill", "Electric Bill"};
     List<String> Expense_List = new ArrayList<String>(Arrays.asList(expenses));
     ArrayAdapter<String> adapter;
     ListView listview;

@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,9 +26,9 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    TextView moneyview;
+    static TextView moneyview;
     Button buttonadd, buttonaddFund;
-    int currentMoney = 0;
+    static int currentMoney = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +38,34 @@ public class MainActivity extends AppCompatActivity {
         moneyview = findViewById(R.id.MoneyView);
         buttonadd = findViewById(R.id.buttonAddExpenses);
         buttonaddFund = findViewById(R.id.buttonAddFunds);
+        ImageView eyeIcon = findViewById(R.id.eyeIcon);
         updateMoneyDisplay();
         buttonadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 OpenList();
+            }
+        });
+
+
+        //store original text
+        String originalText = moneyview.getText().toString();
+
+        eyeIcon.setOnClickListener(new View.OnClickListener() {
+            boolean isTextVisible = true;
+
+            @Override
+            public void onClick(View view) {
+                if (isTextVisible) {
+                    moneyview.setText("****");
+                    eyeIcon.setImageResource(R.drawable.ic_close);
+                } else {
+                    moneyview.setText(originalText);
+                    eyeIcon.setImageResource(R.drawable.ic_eye);
+                }
+
+                // Toggle the visibility flag
+                isTextVisible = !isTextVisible;
             }
         });
 
@@ -54,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void updateMoneyDisplay() {
-        moneyview.setText(currentMoney + "đ" );
+    public static void updateMoneyDisplay() {
+        moneyview.setText(currentMoney + " đ" );
     }
 
 
