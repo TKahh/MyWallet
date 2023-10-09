@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonadd, buttonaddFund;
     static int currentMoney = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
         buttonadd = findViewById(R.id.buttonAddExpenses);
         buttonaddFund = findViewById(R.id.buttonAddFunds);
         ImageView eyeIcon = findViewById(R.id.eyeIcon);
+
         updateMoneyDisplay();
+
         buttonadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,20 +51,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //store original text
-        String originalText = moneyview.getText().toString();
 
         eyeIcon.setOnClickListener(new View.OnClickListener() {
             boolean isTextVisible = true;
-
+            String originalText = moneyview.getText().toString();
             @Override
             public void onClick(View view) {
                 if (isTextVisible) {
-                    moneyview.setText("****");
+                    moneyview.setText("******* đ");
                     eyeIcon.setImageResource(R.drawable.ic_close);
+
                 } else {
-                    moneyview.setText(originalText);
+                    moneyview.setText(String.valueOf(currentMoney));
                     eyeIcon.setImageResource(R.drawable.ic_eye);
+
                 }
 
                 // Toggle the visibility flag
