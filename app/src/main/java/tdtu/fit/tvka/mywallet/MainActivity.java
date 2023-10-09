@@ -3,6 +3,8 @@ package tdtu.fit.tvka.mywallet;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     static TextView moneyview;
     Button buttonadd, buttonaddFund;
     static int currentMoney = 0;
+
+    private DatePickerDialog datePickerDialog;
 
 
     @Override
@@ -62,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     eyeIcon.setImageResource(R.drawable.ic_close);
 
                 } else {
-                    moneyview.setText(String.valueOf(currentMoney));
+                    moneyview.setText(String.valueOf(currentMoney)+" đ");
                     eyeIcon.setImageResource(R.drawable.ic_eye);
 
                 }
@@ -75,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         buttonaddFund.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OpenMoneyDialog();
+                OpenMoneyAdd();
             }
         });
 
@@ -85,37 +90,12 @@ public class MainActivity extends AppCompatActivity {
         moneyview.setText(currentMoney + " đ" );
     }
 
-
-    private void OpenMoneyDialog(){
-        AlertDialog.Builder fund = new AlertDialog.Builder(this);
-        fund.setTitle("Add fund");
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_NUMBER);
-        fund.setView(input);
-
-        fund.setPositiveButton("Add", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                String moneyString = input.getText().toString();
-                if (!moneyString.isEmpty()) {
-                    int FundAdd = Integer.parseInt(moneyString);
-                    currentMoney += FundAdd;
-                    updateMoneyDisplay();
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "Please enter a valid amount", Toast.LENGTH_SHORT ).show();
-                }
-            }
-        });
-
-        fund.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        fund.show();
+    private void OpenMoneyAdd() {
+        Intent intent = new Intent(this, AddFund.class);
+        startActivityForResult(intent, 1);
     }
+
+
 
     private void OpenList(){
         Intent intent = new Intent(this, Expenses_List.class);
@@ -128,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
         if(resultCode == Activity.RESULT_OK){
             if(requestCode == 1){
                 if(data!= null){
-                    currentMoney += data.getExtras().getInt("Money");
+                    currentMoney += data.getIntExtra("Expense", 0);
+                    currentMoney += data.getIntExtra("Fund",0);
                     updateMoneyDisplay();
                 }
             }

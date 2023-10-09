@@ -4,32 +4,20 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.Toast;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
 
-public class Expenses_List extends AppCompatActivity {
+public class AddFund extends AppCompatActivity {
 
     DatePickerDialog datePickerDialog;
-    String[] expenses = new String[]{"Food and Drink", "Commute", "Rent", "Water Bill", "Electric Bill"};
-    int currentMoney = 0;
+    int currentMoney =  0;
 
     EditText editAddFund;
 
@@ -38,11 +26,11 @@ public class Expenses_List extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expenses_list);
-
+        setContentView(R.layout.activity_add_fund);
         editAddFund = findViewById(R.id.amountEdit);
+
         initDatePicker();
-        datePickerbtn = findViewById(R.id.btnDatePickerExpenses);
+        datePickerbtn = findViewById(R.id.btnDatePicker);
         datePickerbtn.setText(getTodayDate());
 
         datePickerbtn.setOnClickListener(new View.OnClickListener() {
@@ -52,48 +40,27 @@ public class Expenses_List extends AppCompatActivity {
             }
         });
 
-        Intent intent_expense = new Intent(Expenses_List.this,MainActivity.class);
+        Intent intent_fund = new Intent(AddFund.this,MainActivity.class);
 
-        add = findViewById(R.id.btnAddExpense);
+        add = findViewById(R.id.btnAddFund);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String moneyAdd = editAddFund.getText().toString();
                 if(!moneyAdd.isEmpty()){
                     int money = Integer.parseInt(moneyAdd);
-                    currentMoney -= money;
-                    intent_expense.putExtra("Expense",currentMoney);
-                    setResult(RESULT_OK,intent_expense);
+                    currentMoney += money;
+                    intent_fund.putExtra("Fund",currentMoney);
+                    setResult(RESULT_OK,intent_fund);
                     finish();
                 }
                 else{
-                    Toast.makeText(Expenses_List.this, "Please enter a valid amount", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddFund.this, "Please enter a valid amount", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-
-
-
-
-        Spinner expense = findViewById(R.id.expensesSpinner);
-        ArrayAdapter aa = new ArrayAdapter(this, R.layout.expenses_spinner_list, expenses);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        expense.setAdapter(aa);
-        expense.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(getApplicationContext(), expenses[position], Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
     }
-
 
     private String getTodayDate()
     {
@@ -161,8 +128,5 @@ public class Expenses_List extends AppCompatActivity {
             return "DEC";
         return "JAN";
     }
-
-
-
 
 }

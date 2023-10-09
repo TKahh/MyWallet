@@ -1,35 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    tools:context=".Expenses_List"
+    tools:context=".AddFund"
     android:background="@color/cardview_dark_background">
 
-
-
-    <TextView
-        android:id="@+id/categoriesView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Categories: "
-        android:textColor="@color/white"
-        android:textSize="27dp"
-        android:textStyle="bold"/>
-
-    <Spinner
-        android:id="@+id/expensesSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:padding="2dp"/>
-
     <LinearLayout
+        android:id="@+id/amountLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/categoriesView"
         android:orientation="vertical">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,6 +39,7 @@
                 android:maxLength="10"/>
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -70,7 +54,7 @@
                 android:textStyle="bold"/>
 
             <Button
-                android:id="@+id/btnDatePickerExpenses"
+                android:id="@+id/btnDatePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="September 10 2023"
@@ -81,10 +65,13 @@
 
         </LinearLayout>
 
+
+
     </LinearLayout>
 
+
     <Button
-        android:id="@+id/btnAddExpense"
+        android:id="@+id/btnAddFund"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
@@ -92,5 +79,7 @@
         android:layout_alignParentRight="true"
         android:textSize="27dp"
         android:textStyle="bold"/>
+
+
 
 </RelativeLayout>
