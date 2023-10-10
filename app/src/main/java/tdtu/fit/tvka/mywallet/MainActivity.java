@@ -1,118 +1,102 @@
 package tdtu.fit.tvka.mywallet;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
-import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputType;
-import android.view.InputDevice;
+import android.text.style.TtsSpan;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
-    static TextView moneyview;
-    Button buttonadd, buttonaddFund;
-    static int currentMoney = 0;
 
-    private DatePickerDialog datePickerDialog;
-
+    private EditText editTextUsername;
+    private EditText editTextPassword;
+    private CheckBox checkBoxRememberMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        editTextUsername = findViewById(R.id.username);
+        editTextPassword = findViewById(R.id.password);
 
-        moneyview = findViewById(R.id.MoneyView);
-        buttonadd = findViewById(R.id.buttonAddExpenses);
-        buttonaddFund = findViewById(R.id.buttonAddFunds);
-        ImageView eyeIcon = findViewById(R.id.eyeIcon);
-
-        updateMoneyDisplay();
-
-        buttonadd.setOnClickListener(new View.OnClickListener() {
+        checkBoxRememberMe = findViewById(R.id.rememberaccount);
+        Button buttonLogin = findViewById(R.id.buttonlogin);
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OpenList();
+                login();
             }
         });
+        //load saved account
+        loadSavedCredentials();
+    }
 
 
 
-        eyeIcon.setOnClickListener(new View.OnClickListener() {
-            boolean isTextVisible = true;
-            String originalText = moneyview.getText().toString();
-            @Override
-            public void onClick(View view) {
-                if (isTextVisible) {
-                    moneyview.setText("******* đ");
-                    eyeIcon.setImageResource(R.drawable.ic_close);
+    private void login() {
+        String username = editTextUsername.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
 
-                } else {
-                    moneyview.setText(String.valueOf(currentMoney)+" đ");
-                    eyeIcon.setImageResource(R.drawable.ic_eye);
-
-                }
-
-                // Toggle the visibility flag
-                isTextVisible = !isTextVisible;
+        if (username.isEmpty() || password.isEmpty()){
+            Toast.makeText(this, "Please enter both username and password", Toast.LENGTH_SHORT).show();
+        } else if (isValidCredentials(username, password)){
+            //for login successful
+            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+            // Save or clear credentials based on "Remember Me" checkbox state
+            if (checkBoxRememberMe.isChecked()) {
+                saveCredentials(username, password);
+            } else {
+                clearSavedCredentials();
             }
-        });
+            Intent intent = new Intent(MainActivity.this, MoneyActivity.class);
+            startActivity(intent);
 
-        buttonaddFund.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OpenMoneyAdd();
-            }
-        });
+            // Continue with your MainActivity logic here
+        } else {
+            // Invalid credentials
+            Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
 
-    }
-
-    public static void updateMoneyDisplay() {
-        moneyview.setText(currentMoney + " đ" );
-    }
-
-    private void OpenMoneyAdd() {
-        Intent intent = new Intent(this, AddFund.class);
-        startActivityForResult(intent, 1);
-    }
-
-
-
-    private void OpenList(){
-        Intent intent = new Intent(this, Expenses_List.class);
-        startActivityForResult(intent,1);
-    }
-
-
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if(resultCode == Activity.RESULT_OK){
-            if(requestCode == 1){
-                if(data!= null){
-                    currentMoney += data.getIntExtra("Expense", 0);
-                    currentMoney += data.getIntExtra("Fund",0);
-                    updateMoneyDisplay();
-                }
-            }
         }
     }
+
+    private boolean isValidCredentials(String username, String password) {
+        return username.equals("admin") && password.equals("password");
+    }
+    private void loadSavedCredentials() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String savedUsername = sharedPreferences.getString("username", "");
+        String savedPassword = sharedPreferences.getString("password", "");
+
+        editTextUsername.setText(savedUsername);
+        editTextPassword.setText(savedPassword);
+        checkBoxRememberMe.setChecked(!savedUsername.isEmpty());
+    }
+
+
+    private void clearSavedCredentials() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+    }
+
+    private void saveCredentials(String userID, String password) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("userID", userID);
+        editor.putString("password", password);
+        editor.apply();
+    }
+
+
+
 }

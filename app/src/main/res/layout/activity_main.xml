@@ -1,53 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".MainActivity"
-    android:background="@color/cardview_dark_background">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/idname"
+            android:text="Username"
+            android:textSize="17dp"
+            android:paddingVertical="17dp"
+            android:layout_margin="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="17dp"
+            android:layout_margin="10dp"
+            android:id="@+id/username"
+            android:hint="admin"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/MoneyView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textSize="27dp"
-            android:textStyle="bold" />
+            android:id="@+id/pass"
+            android:text="Password"
+            android:textSize="17dp"
+            android:paddingVertical="17dp"
+            android:layout_margin="10dp"/>
 
-        <ImageView
-            android:id="@+id/eyeIcon"
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_eye"
-            android:padding="8dp" />
+            android:paddingVertical="17dp"
+            android:layout_margin="10dp"
+            android:id="@+id/password"
+            android:inputType="textPassword"
+            />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonAddExpenses"
+    <CheckBox
+        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add expenses"
-        android:textSize="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"/>
+        android:id="@+id/rememberaccount"
+        android:text="Remember me"
+        android:textSize="17dp">
+
+    </CheckBox>
 
     <Button
-        android:id="@+id/buttonAddFunds"
+        android:id="@+id/buttonlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add fund"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#C5C5C5"
+        android:backgroundTint="#676767"
+        android:text="Login"
         android:textSize="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        android:onClick="onClick">
 
-</RelativeLayout>
+    </Button>
+
+
+</LinearLayout>
