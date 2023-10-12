@@ -28,7 +28,7 @@ import java.util.List;
 public class Expenses_List extends AppCompatActivity {
 
     DatePickerDialog datePickerDialog;
-    String[] expenses = new String[]{"Food and Drink", "Commute", "Rent", "Water Bill", "Electric Bill"};
+    String[] expenses = new String[]{"Food and Drink", "Commute", "Rent", "Water Bill", "Electric Bill", "Income"};
     int currentMoney = 0;
 
     EditText editAddFund;
@@ -52,32 +52,35 @@ public class Expenses_List extends AppCompatActivity {
             }
         });
 
-        Intent intent_expense = new Intent(Expenses_List.this,MainActivity.class);
+        Intent intent_expense = new Intent(Expenses_List.this, MainActivity.class);
 
         add = findViewById(R.id.btnAddExpense);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String moneyAdd = editAddFund.getText().toString();
-                if(!moneyAdd.isEmpty()){
+                if (!moneyAdd.isEmpty()) {
                     int money = Integer.parseInt(moneyAdd);
-                    currentMoney -= money;
-                    intent_expense.putExtra("Expense",currentMoney);
-                    setResult(RESULT_OK,intent_expense);
+                    Spinner expense = findViewById(R.id.expensesSpinner);
+                    String selectedCategory = expenses[expense.getSelectedItemPosition()];
+
+                    if (selectedCategory.equals("Income")) {
+                        currentMoney += money;
+                    } else {
+                        currentMoney -= money;
+                    }
+
+                    intent_expense.putExtra("Expense", currentMoney);
+                    setResult(RESULT_OK, intent_expense);
                     finish();
-                }
-                else{
+                } else {
                     Toast.makeText(Expenses_List.this, "Please enter a valid amount", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-
-
-
-
         Spinner expense = findViewById(R.id.expensesSpinner);
-        ArrayAdapter aa = new ArrayAdapter(this, R.layout.expenses_spinner_list, expenses);
+        ArrayAdapter<String> aa = new ArrayAdapter<>(this, R.layout.expenses_spinner_list, expenses);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         expense.setAdapter(aa);
@@ -95,8 +98,7 @@ public class Expenses_List extends AppCompatActivity {
     }
 
 
-    private String getTodayDate()
-    {
+    private String getTodayDate() {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -105,13 +107,10 @@ public class Expenses_List extends AppCompatActivity {
         return makeDateString(day, month, year);
     }
 
-    private void initDatePicker()
-    {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
-        {
+    private void initDatePicker() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day)
-            {
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
                 String date = makeDateString(day, month, year);
                 datePickerbtn.setText(date);
@@ -135,34 +134,30 @@ public class Expenses_List extends AppCompatActivity {
     }
 
     private String getMonthFormat(int month) {
-        if(month == 1)
+        if (month == 1)
             return "JAN";
-        if(month == 2)
+        if (month == 2)
             return "FEB";
-        if(month == 3)
+        if (month == 3)
             return "MAR";
-        if(month == 4)
+        if (month == 4)
             return "APR";
-        if(month == 5)
+        if (month == 5)
             return "MAY";
-        if(month == 6)
+        if (month == 6)
             return "JUN";
-        if(month == 7)
+        if (month == 7)
             return "JUL";
-        if(month == 8)
+        if (month == 8)
             return "AUG";
-        if(month == 9)
+        if (month == 9)
             return "SEP";
-        if(month == 10)
+        if (month == 10)
             return "OCT";
-        if(month == 11)
+        if (month == 11)
             return "NOV";
-        if(month == 12)
+        if (month == 12)
             return "DEC";
         return "JAN";
     }
-
-
-
-
 }

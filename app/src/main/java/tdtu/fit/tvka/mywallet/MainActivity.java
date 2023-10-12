@@ -30,7 +30,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     static TextView moneyview;
-    Button buttonadd, buttonaddFund;
+    Button buttonaddIncome;
     static int currentMoney = 0;
 
     private DatePickerDialog datePickerDialog;
@@ -42,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         moneyview = findViewById(R.id.MoneyView);
-        buttonadd = findViewById(R.id.buttonAddExpenses);
-        buttonaddFund = findViewById(R.id.buttonAddFunds);
+//        buttonadd = findViewById(R.id.buttonAddExpenses);
+        buttonaddIncome = findViewById(R.id.buttonAddIncome);
         ImageView eyeIcon = findViewById(R.id.eyeIcon);
 
         updateMoneyDisplay();
 
-        buttonadd.setOnClickListener(new View.OnClickListener() {
+        buttonaddIncome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 OpenList();
@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     eyeIcon.setImageResource(R.drawable.ic_close);
 
                 } else {
-                    moneyview.setText(String.valueOf(currentMoney)+" đ");
+                    String formattedMoney = String.format("%,d", currentMoney);
+                    moneyview.setText(String.valueOf(formattedMoney) + " đ" );
                     eyeIcon.setImageResource(R.drawable.ic_eye);
 
                 }
@@ -77,23 +78,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonaddFund.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OpenMoneyAdd();
-            }
-        });
+//        buttonaddFund.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                OpenMoneyAdd();
+//            }
+//        });
 
     }
 
     public static void updateMoneyDisplay() {
-        moneyview.setText(currentMoney + " đ" );
+        String formattedMoney = String.format("%,d", currentMoney);
+        moneyview.setText(formattedMoney + " đ" );
     }
 
-    private void OpenMoneyAdd() {
-        Intent intent = new Intent(this, AddFund.class);
-        startActivityForResult(intent, 1);
-    }
+//    private void OpenMoneyAdd() {
+//        Intent intent = new Intent(this, AddFund.class);
+//        startActivityForResult(intent, 1);
+//    }
 
 
 
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             if(requestCode == 1){
                 if(data!= null){
                     currentMoney += data.getIntExtra("Expense", 0);
-                    currentMoney += data.getIntExtra("Fund",0);
+                    currentMoney += data.getIntExtra("Income",0);
                     updateMoneyDisplay();
                 }
             }

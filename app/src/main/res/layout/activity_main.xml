@@ -1,56 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/cardview_dark_background"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity"
-    android:background="@color/cardview_dark_background">
+    tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true">
 
-        <TextView
-            android:id="@+id/MoneyView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textSize="27dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/eyeIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_eye"
-            android:padding="8dp" />
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/barchart"
+        android:layout_width="64dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/barchart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddIncome" />
 
     <Button
         android:id="@+id/buttonAddExpenses"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="4dp"
         android:text="-"
+        android:textSize="20dp"
         android:textStyle="bold"
-        android:textSize="25dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAddIncome"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonAddFunds"
+        android:id="@+id/buttonAddIncome"
+        android:layout_width="70dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="8dp"
+        android:text="+"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/barchart"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddExpenses" />
+
+
+    <TextView
+        android:id="@+id/MoneyView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
+        android:layout_marginTop="60dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="35dp"
         android:textStyle="bold"
-        android:textSize="25dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/eyeIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="64dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_eye"
+        app:layout_constraintStart_toEndOf="@+id/MoneyView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

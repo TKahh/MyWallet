@@ -50,7 +50,8 @@ public class AddFund extends AppCompatActivity {
                 if(!moneyAdd.isEmpty()){
                     int money = Integer.parseInt(moneyAdd);
                     currentMoney += money;
-                    intent_fund.putExtra("Fund",currentMoney);
+                    intent_fund.putExtra("Expense", 0);
+                    intent_fund.putExtra("Income", currentMoney);
                     setResult(RESULT_OK,intent_fund);
                     finish();
                 }
