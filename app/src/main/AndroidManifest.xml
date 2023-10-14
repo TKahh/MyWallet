@@ -10,30 +10,36 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyWallet"
+        android:theme="@style/Theme.Material3.DynamicColors.Light"
         tools:targetApi="31">
         <activity
+            android:label="ConfirmData"
             android:name=".ReConfirmDataActivity"
             android:exported="false" />
         <activity
+            android:label="History"
             android:name=".HistoryActivity"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".HIstoryActivity"-->
+<!--            android:exported="false" />-->
         <activity
-            android:name=".HIstoryActivity"
-            android:exported="false" />
-        <activity
+            android:label="My Wallet"
             android:name=".InsightView"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".MoneyActivity"-->
+<!--            android:exported="false" />-->
         <activity
-            android:name=".MoneyActivity"
-            android:exported="false" />
-        <activity
+            android:label="My Wallet"
             android:name=".AddFund"
             android:exported="false" />
         <activity
+            android:label="My Wallet"
             android:name=".Expenses_List"
             android:exported="false" />
         <activity
+            android:label="My Wallet"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
