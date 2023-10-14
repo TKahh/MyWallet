@@ -13,35 +13,36 @@
         android:theme="@style/Theme.Material3.DynamicColors.Light"
         tools:targetApi="31">
         <activity
-            android:label="ConfirmData"
+            android:name=".UpdateActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReConfirmDataActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="ConfirmData" />
         <activity
-            android:label="History"
             android:name=".HistoryActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".HIstoryActivity"-->
-<!--            android:exported="false" />-->
+            android:exported="false"
+            android:label="History" /> <!-- <activity -->
+        <!-- android:name=".HIstoryActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
-            android:label="My Wallet"
             android:name=".InsightView"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".MoneyActivity"-->
-<!--            android:exported="false" />-->
+            android:exported="false"
+            android:label="My Wallet" /> <!-- <activity -->
+        <!-- android:name=".MoneyActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
-            android:label="My Wallet"
             android:name=".AddFund"
-            android:exported="false" />
+            android:exported="false"
+            android:label="My Wallet" />
         <activity
-            android:label="My Wallet"
             android:name=".Expenses_List"
-            android:exported="false" />
+            android:exported="false"
+            android:label="My Wallet" />
         <activity
-            android:label="My Wallet"
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="My Wallet">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
