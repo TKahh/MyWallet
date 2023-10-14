@@ -13,9 +13,11 @@
         android:theme="@style/Theme.MyWallet"
         tools:targetApi="31">
         <activity
+            android:name=".InsightView"
+            android:exported="false" />
+        <activity
             android:name=".MoneyActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".AddFund"
             android:exported="false" />
@@ -31,7 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 //        buttonadd = findViewById(R.id.buttonAddExpenses);
         buttonaddIncome = findViewById(R.id.buttonAddIncome);
         ImageView eyeIcon = findViewById(R.id.eyeIcon);
-
+        Button Chart = findViewById(R.id.barchart);
         updateMoneyDisplay();
 
         buttonaddIncome.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Chart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenInsight();
+            }
+        });
 
 
         eyeIcon.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +103,10 @@ public class MainActivity extends AppCompatActivity {
 //        startActivityForResult(intent, 1);
 //    }
 
-
+    private void OpenInsight(){
+        Intent intent = new Intent(this, InsightView.class);
+        startActivityForResult(intent,1);
+    }
 
     private void OpenList(){
         Intent intent = new Intent(this, Expenses_List.class);
