@@ -23,6 +23,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +33,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     static TextView moneyview;
     Button buttonaddIncome;
+
+    FloatingActionButton buttonHistory;
     static int currentMoney = 0;
 
     private DatePickerDialog datePickerDialog;
@@ -40,6 +44,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        buttonHistory = findViewById(R.id.btn_history);
+        buttonHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(MainActivity.this, HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
 
         moneyview = findViewById(R.id.MoneyView);
 //        buttonadd = findViewById(R.id.buttonAddExpenses);

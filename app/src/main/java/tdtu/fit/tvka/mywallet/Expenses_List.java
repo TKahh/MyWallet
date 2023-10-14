@@ -33,12 +33,21 @@ public class Expenses_List extends AppCompatActivity {
 
     EditText editAddFund;
 
-    Button add, datePickerbtn;
+    Button add, datePickerbtn, ButtonConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expenses_list);
+
+        ButtonConfirm = findViewById(R.id.confirm_button);
+        ButtonConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Expenses_List.this, ReConfirmDataActivity.class);
+                startActivity(intent);
+            }
+        });
 
         editAddFund = findViewById(R.id.amountEdit);
         initDatePicker();

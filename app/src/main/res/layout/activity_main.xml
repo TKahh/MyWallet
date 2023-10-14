@@ -10,40 +10,37 @@
     tools:context=".MainActivity">
 
 
+    <!--    <Button-->
+    <!--        android:id="@+id/buttonAddExpenses"-->
+    <!--        android:layout_width="64dp"-->
+    <!--        android:layout_height="47dp"-->
+    <!--        android:text="-"-->
+    <!--        android:textSize="20dp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        tools:layout_editor_absoluteX="74dp"-->
+    <!--        tools:layout_editor_absoluteY="591dp" />-->
+
     <Button
         android:id="@+id/barchart"
         android:layout_width="64dp"
         android:layout_height="47dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/barchart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonAddIncome" />
 
     <Button
-        android:id="@+id/buttonAddExpenses"
-        android:layout_width="64dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="4dp"
-        android:text="-"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonAddIncome"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/buttonAddIncome"
         android:layout_width="70dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="20dp"
         android:text="+"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/barchart"
-        app:layout_constraintStart_toEndOf="@+id/buttonAddExpenses" />
+        app:layout_constraintStart_toEndOf="@+id/btn_history" />
 
 
     <TextView
@@ -68,6 +65,17 @@
         android:src="@drawable/ic_eye"
         app:layout_constraintStart_toEndOf="@+id/MoneyView"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAddIncome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/baseline_menu_book_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
