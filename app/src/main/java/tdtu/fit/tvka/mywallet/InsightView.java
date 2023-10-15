@@ -23,15 +23,17 @@ public class InsightView extends AppCompatActivity {
         XAxis x = lineChart.getXAxis();
         x.setAxisMaximum(31);
         x.setAxisMinimum(1);
+        x.setDrawGridLines(false);
+        x.setLabelCount(31,true);
 
 
 
         List<Entry> entries = new ArrayList<>();
         entries.add(new Entry(0, 10));
         entries.add(new Entry(1, 20));
-        entries.add(new Entry(2, 15));
-        entries.add(new Entry(3, 25));
-        entries.add(new Entry(4, 18));
+        entries.add(new Entry(5, 15));
+        entries.add(new Entry(10, 25));
+        entries.add(new Entry(15, 18));
 
         LineDataSet dataSet = new LineDataSet(entries, "Sample Data");
         dataSet.setColor(getResources().getColor(android.R.color.holo_blue_dark));
