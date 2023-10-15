@@ -20,6 +20,11 @@ public class InsightView extends AppCompatActivity {
         setContentView(R.layout.activity_insight_view);
 
         LineChart lineChart = (LineChart) findViewById(R.id.lineChart);
+        XAxis x = lineChart.getXAxis();
+        x.setAxisMaximum(31);
+        x.setAxisMinimum(1);
+
+
 
         List<Entry> entries = new ArrayList<>();
         entries.add(new Entry(0, 10));
