@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,6 +20,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     private ArrayList expense_id, categories, amount, date;
+
+    Animation translate_anim;
 
     CustomAdapter(Context context, ArrayList expense_id, ArrayList categories, ArrayList amount,
                   ArrayList date ) {
@@ -70,6 +74,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             amount_text = itemView.findViewById(R.id.amount_text);
             date_text = itemView.findViewById(R.id.date_text);
             layout_history = itemView.findViewById(R.id.layout_history);
+            //Set Animation in RecyclerView
+            translate_anim = AnimationUtils.loadAnimation(context, R.anim.my_anim);
+            layout_history.setAnimation(translate_anim);
+
         }
     }
 }
