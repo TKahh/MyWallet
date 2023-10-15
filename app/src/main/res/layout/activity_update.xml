@@ -11,12 +11,12 @@
         android:id="@+id/categories_input2"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="56dp"
         android:ems="10"
         android:hint="Category"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,12 +37,12 @@
         android:id="@+id/btn_update"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="40dp"
         android:text="Update"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amount_input2" />
 
@@ -57,5 +57,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/categories_input2" />
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Delete"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#F08080"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_update" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
